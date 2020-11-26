@@ -35,7 +35,7 @@ module.exports = class extends (
         type: 'list',
         name: 'packageManager',
         message: 'Choose package manager',
-        choices: ['yarn', 'npm', 'I will run it manually'],
+        choices: ['yarn', 'npm'],
       },
     ];
 
@@ -56,12 +56,14 @@ module.exports = class extends (
       : packageName;
     const camelName = _.camelCase(shortName);
     const pascalName = _.upperFirst(camelName);
+    const runCommand = this.props.packageManager == 'npm' ? 'npm run' : 'yarn';
 
     const tplProps = {
       packageName,
       shortName,
       camelName,
       pascalName,
+      runCommand,
     };
     this.fs.copyTpl(this.templatePath('package.json'), this.destinationPath('package.json'), tplProps);
     this.fs.copyTpl(this.templatePath('README.md'), this.destinationPath('README.md'), tplProps);
@@ -99,6 +101,40 @@ module.exports = class extends (
       this.fs.copyTpl(
         this.templatePath('src-fileFormat/backend/writer.js'),
         this.destinationPath(`src/backend/${camelName}Writer.js`),
+        tplProps
+      );
+    }
+
+    if (this.props.pluginType == 'databaseDriver') {
+      this.fs.copyTpl(
+        this.templatePath('src-databaseDriver/frontend/index.js'),
+        this.destinationPath('src/frontend/index.js'),
+        tplProps
+      );
+      this.fs.copyTpl(
+        this.templatePath('src-databaseDriver/frontend/Dumper.js'),
+        this.destinationPath('src/frontend/Dumper.js'),
+        tplProps
+      );
+      this.fs.copyTpl(
+        this.templatePath('src-databaseDriver/frontend/driver.js'),
+        this.destinationPath('src/frontend/driver.js'),
+        tplProps
+      );
+
+      this.fs.copyTpl(
+        this.templatePath('src-databaseDriver/backend/driver.js'),
+        this.destinationPath('src/backend/driver.js'),
+        tplProps
+      );
+      this.fs.copyTpl(
+        this.templatePath('src-databaseDriver/backend/index.js'),
+        this.destinationPath('src/backend/index.js'),
+        tplProps
+      );
+      this.fs.copyTpl(
+        this.templatePath('src-databaseDriver/backend/Analyser.js'),
+        this.destinationPath('src/backend/Analyser.js'),
         tplProps
       );
     }

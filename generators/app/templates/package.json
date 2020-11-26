@@ -13,11 +13,13 @@
     "scripts": {
       "build:frontend": "webpack --config webpack-frontend.config",
       "build:backend": "webpack --config webpack-backend.config.js",
-      "build": "yarn build:frontend && yarn build:backend",
-      "plugin": "yarn build && dbgate-plugin <%= packageName %>",
-      "plugout": "dbgate-plugout <%= packageName %>"
+      "build": "<%= runCommand %> build:frontend && <%= runCommand %> build:backend",
+      "plugin": "<%= runCommand %> build && dbgate-plugin <%= packageName %>",
+      "plugout": "dbgate-plugout <%= packageName %>",
+      "prepublishOnly": "<%= runCommand %> build"
     },
     "devDependencies": {
+      "dbgate-tools": "^1.0.4",
       "dbgate-plugin-tools": "^1.0.0",
       "byline": "^5.0.0",
       "webpack": "^4.42.0",
