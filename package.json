@@ -15,15 +15,16 @@
     "yeoman-generator"
   ],
   "devDependencies": {
-    "yeoman-test": "^1.7.0",
-    "yeoman-assert": "^3.1.0"
+    "yeoman-assert": "^3.1.0",
+    "yeoman-test": "^1.7.0"
   },
   "engines": {
     "npm": ">= 4.0.0"
   },
   "dependencies": {
-    "yeoman-generator": "^2.0.1",
     "chalk": "^2.1.0",
+    "lodash": "^4.17.20",
+    "yeoman-generator": "^2.0.1",
     "yosay": "^2.0.1"
   },
   "repository": "dbshell/generator-dbgate",

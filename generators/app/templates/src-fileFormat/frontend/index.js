@@ -7,9 +7,9 @@ const fileFormat = {
     // human readable file format name
     name: 'My new file format',
     // function name from backend, which contains reader factory, postfixed by package name
-    readerFunc: 'reader@<%= packageName %>',
+    readerFunc: '<%= camelName %>Reader@<%= packageName %>',
     // function name from backend, which contains writer factory, postfixed by package name
-    writerFunc: 'writer@<%= packageName %>',
+    writerFunc: '<%= camelName %>Writer@<%= packageName %>',
     // optional list of format arguments, which can be edited from UI
     args: [
       {
