@@ -1,10 +1,10 @@
-const <%= camelName %>Reader = require('./<%= camelName %>Reader');
-const <%= camelName %>Writer = require('./<%= camelName %>Writer');
+const reader = require('./reader');
+const writer = require('./writer');
 
 module.exports = {
   packageName: '<%= packageName %>',
   shellApi: {
-    <%= camelName %>Reader,
-    <%= camelName %>Writer,
+    reader,
+    writer,
   },
 };

@@ -95,12 +95,12 @@ module.exports = class extends (
       );
       this.fs.copyTpl(
         this.templatePath('src-fileFormat/backend/reader.js'),
-        this.destinationPath(`src/backend/${camelName}Reader.js`),
+        this.destinationPath(`src/backend/reader.js`),
         tplProps
       );
       this.fs.copyTpl(
         this.templatePath('src-fileFormat/backend/writer.js'),
-        this.destinationPath(`src/backend/${camelName}Writer.js`),
+        this.destinationPath(`src/backend/writer.js`),
         tplProps
       );
     }
