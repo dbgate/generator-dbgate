@@ -1,0 +1,31 @@
+{
+  "name": "generator-dbgate",
+  "version": "0.0.0",
+  "description": "Generator for DbGate plugins",
+  "homepage": "https://dbgate.org",
+  "author": {
+    "name": "Jan Prochazka"
+  },
+  "files": [
+    "generators"
+  ],
+  "main": "generators/index.js",
+  "keywords": [
+    "dbgate",
+    "yeoman-generator"
+  ],
+  "devDependencies": {
+    "yeoman-test": "^1.7.0",
+    "yeoman-assert": "^3.1.0"
+  },
+  "engines": {
+    "npm": ">= 4.0.0"
+  },
+  "dependencies": {
+    "yeoman-generator": "^2.0.1",
+    "chalk": "^2.1.0",
+    "yosay": "^2.0.1"
+  },
+  "repository": "dbshell/generator-dbgate",
+  "license": "MIT"
+}
