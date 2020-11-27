@@ -50,13 +50,13 @@ module.exports = class extends (
   }
 
   writing() {
-    const { packageName } = this.props;
+    const { packageName, packageManager } = this.props;
     const shortName = packageName.startsWith('dbgate-plugin-')
       ? packageName.substring('dbgate-plugin-'.length)
       : packageName;
     const camelName = _.camelCase(shortName);
     const pascalName = _.upperFirst(camelName);
-    const runCommand = this.props.packageManager == 'npm' ? 'npm run' : 'yarn';
+    const runCommand = packageManager == 'npm' ? 'npm run' : 'yarn';
 
     const tplProps = {
       packageName,
@@ -64,11 +64,13 @@ module.exports = class extends (
       camelName,
       pascalName,
       runCommand,
+      packageManager,
     };
     this.fs.copyTpl(this.templatePath('package.json'), this.destinationPath('package.json'), tplProps);
     this.fs.copyTpl(this.templatePath('README.md'), this.destinationPath('README.md'), tplProps);
     this.fs.copy(this.templatePath('prettier.config.js'), this.destinationPath('prettier.config.js'), tplProps);
-    this.fs.copy(this.templatePath('icon.svg'), this.destinationPath('icon.svg'), tplProps);
+    this.fs.copy(this.templatePath('icon.svg'), this.destinationPath('icon.svg'));
+    this.fs.copy(this.templatePath('gitignore'), this.destinationPath('.gitignore'));
 
     this.fs.copyTpl(
       this.templatePath('webpack-frontend.config.js'),

@@ -11,7 +11,7 @@ class StringifyStream extends stream.Transform {
   }
 }
 
-async function jsonLinesWriter({ fileName, encoding = 'utf-8' }) {
+async function writer({ fileName, encoding = 'utf-8' }) {
   console.log(`Writing file ${fileName}`);
   const stringify = new StringifyStream();
   const fileStream = fs.createWriteStream(fileName, encoding);
@@ -20,4 +20,4 @@ async function jsonLinesWriter({ fileName, encoding = 'utf-8' }) {
   return stringify;
 }
 
-module.exports = jsonLinesWriter;
+module.exports = writer;

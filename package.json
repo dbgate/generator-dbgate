@@ -27,6 +27,9 @@
     "yeoman-generator": "^2.0.1",
     "yosay": "^2.0.1"
   },
-  "repository": "dbshell/generator-dbgate",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dbshell/generator-dbgate.git"
+  },
   "license": "MIT"
 }
