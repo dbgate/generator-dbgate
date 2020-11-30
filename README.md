@@ -16,12 +16,22 @@ Then generate your new project:
 yo dbgate
 ```
 
-## Getting To Know Yeoman
+Select one of plugin types:
+- file format - parser and writer of file format
+- database engine connector
 
- * Yeoman has a heart of gold.
- * Yeoman is a person with feelings and opinions, but is very easy to work with.
- * Yeoman can be too opinionated at times but is easily convinced not to be.
- * Feel free to [learn more about Yeoman](http://yeoman.io/).
+## Test your plugin
+If you create plugin of file format type, it is prepared to test it imediately. You need to have DbGate installed locally.
+
+```bash
+cd dbgate-plugin-myplugin
+yarn plugin
+```
+
+If you start DbGate, you will see new plugin. Command ```yarn plugout``` deletes plugin from DbGate.
+
+## Publish you plugin
+Check plugins package.json and fill plugin description, keywords and author. Then ```yarn publish``` will publish plugin into NPM repository. After this, plugin will bve accessible for all DbGate users.
 
 ## License
 
