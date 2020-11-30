@@ -1,4 +1,5 @@
-# generator-dbgate [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
+# generator-dbgate [![NPM version][npm-image]][npm-url] 
+
 > Generator for DbGate plugins
 
 ## Installation
@@ -40,9 +41,3 @@ MIT © [Jan Prochazka]()
 
 [npm-image]: https://badge.fury.io/js/generator-dbgate.svg
 [npm-url]: https://npmjs.org/package/generator-dbgate
-[travis-image]: https://travis-ci.com/dbshell/generator-dbgate.svg?branch=master
-[travis-url]: https://travis-ci.com/dbshell/generator-dbgate
-[daviddm-image]: https://david-dm.org/dbshell/generator-dbgate.svg?theme=shields.io
-[daviddm-url]: https://david-dm.org/dbshell/generator-dbgate
-[coveralls-image]: https://coveralls.io/repos/dbshell/generator-dbgate/badge.svg
-[coveralls-url]: https://coveralls.io/r/dbshell/generator-dbgate
