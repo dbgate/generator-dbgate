@@ -92,7 +92,7 @@ module.exports = class extends Generator {
         this.fs.copyTpl(this.templatePath('src-themeDark/index.js'), this.destinationPath('src/index.js'), tplProps);
       }
     } else {
-      this.fs.copyTpl(this.templatePath('package.json'), this.destinationPath('package.json'), tplProps);
+      this.fs.copyTpl(this.templatePath('package-full.json'), this.destinationPath('package.json'), tplProps);
 
       this.fs.copyTpl(
         this.templatePath('webpack-frontend.config.js'),
