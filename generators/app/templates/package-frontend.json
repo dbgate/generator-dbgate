@@ -1,0 +1,25 @@
+{
+    "name": "<%= packageName %>",
+    "version": "1.0.0",
+    "license": "MIT",
+    "keywords": [
+      "dbgate",
+      "dbgateplugin"
+    ],
+    "files": [
+      "dist"
+    ],
+    "scripts": {
+      "build": "webpack --config webpack.config",
+      "plugin": "<%= runCommand %> build && <%= packageManager %> pack && dbgate-plugin <%= packageName %>",
+      "plugout": "dbgate-plugout <%= packageName %>",
+      "prepublishOnly": "<%= runCommand %> build"
+    },
+    "devDependencies": {
+      "dbgate-tools": "^1.0.4",
+      "dbgate-plugin-tools": "^1.0.4",
+      "webpack": "^4.42.0",
+      "webpack-cli": "^3.3.11"
+    }
+  }
+  

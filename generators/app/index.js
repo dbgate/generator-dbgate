@@ -3,9 +3,7 @@ const chalk = require('chalk');
 const yosay = require('yosay');
 const _ = require('lodash');
 
-module.exports = class extends (
-  Generator
-) {
+module.exports = class extends Generator {
   prompting() {
     this.log(yosay(`Welcome to ${chalk.red('DbgGate plugin')} generator!`));
 
@@ -28,6 +26,14 @@ module.exports = class extends (
           {
             name: 'Database driver plugin',
             value: 'databaseDriver',
+          },
+          {
+            name: 'Theme plugin - light theme',
+            value: 'themeLight',
+          },
+          {
+            name: 'Theme plugin - dark theme',
+            value: 'themeDark',
           },
         ],
       },
@@ -66,79 +72,96 @@ module.exports = class extends (
       runCommand,
       packageManager,
     };
-    this.fs.copyTpl(this.templatePath('package.json'), this.destinationPath('package.json'), tplProps);
     this.fs.copyTpl(this.templatePath('README.md'), this.destinationPath('README.md'), tplProps);
     this.fs.copy(this.templatePath('prettier.config.js'), this.destinationPath('prettier.config.js'), tplProps);
     this.fs.copy(this.templatePath('icon.svg'), this.destinationPath('icon.svg'));
     this.fs.copy(this.templatePath('gitignore'), this.destinationPath('.gitignore'));
 
-    this.fs.copyTpl(
-      this.templatePath('webpack-frontend.config.js'),
-      this.destinationPath('webpack-frontend.config.js'),
-      tplProps
-    );
-    this.fs.copyTpl(
-      this.templatePath('webpack-backend.config.js'),
-      this.destinationPath('webpack-backend.config.js'),
-      tplProps
-    );
-
-    if (this.props.pluginType == 'fileFormat') {
+    if (this.props.pluginType == 'themeLight' || this.props.pluginType == 'themeDark') {
+      this.fs.copyTpl(this.templatePath('package-frontend.json'), this.destinationPath('package.json'), tplProps);
       this.fs.copyTpl(
-        this.templatePath('src-fileFormat/frontend/index.js'),
-        this.destinationPath('src/frontend/index.js'),
+        this.templatePath('webpack-frontend-only.config.js'),
+        this.destinationPath('webpack.config.js'),
         tplProps
       );
 
-      this.fs.copyTpl(
-        this.templatePath('src-fileFormat/backend/index.js'),
-        this.destinationPath('src/backend/index.js'),
-        tplProps
-      );
-      this.fs.copyTpl(
-        this.templatePath('src-fileFormat/backend/reader.js'),
-        this.destinationPath(`src/backend/reader.js`),
-        tplProps
-      );
-      this.fs.copyTpl(
-        this.templatePath('src-fileFormat/backend/writer.js'),
-        this.destinationPath(`src/backend/writer.js`),
-        tplProps
-      );
-    }
+      if (this.props.pluginType == 'themeLight') {
+        this.fs.copyTpl(this.templatePath('src-themeLight/index.js'), this.destinationPath('src/index.js'), tplProps);
+      }
+      if (this.props.pluginType == 'themeDark') {
+        this.fs.copyTpl(this.templatePath('src-themeDark/index.js'), this.destinationPath('src/index.js'), tplProps);
+      }
+    } else {
+      this.fs.copyTpl(this.templatePath('package.json'), this.destinationPath('package.json'), tplProps);
 
-    if (this.props.pluginType == 'databaseDriver') {
       this.fs.copyTpl(
-        this.templatePath('src-databaseDriver/frontend/index.js'),
-        this.destinationPath('src/frontend/index.js'),
+        this.templatePath('webpack-frontend.config.js'),
+        this.destinationPath('webpack-frontend.config.js'),
         tplProps
       );
       this.fs.copyTpl(
-        this.templatePath('src-databaseDriver/frontend/Dumper.js'),
-        this.destinationPath('src/frontend/Dumper.js'),
-        tplProps
-      );
-      this.fs.copyTpl(
-        this.templatePath('src-databaseDriver/frontend/driver.js'),
-        this.destinationPath('src/frontend/driver.js'),
+        this.templatePath('webpack-backend.config.js'),
+        this.destinationPath('webpack-backend.config.js'),
         tplProps
       );
 
-      this.fs.copyTpl(
-        this.templatePath('src-databaseDriver/backend/driver.js'),
-        this.destinationPath('src/backend/driver.js'),
-        tplProps
-      );
-      this.fs.copyTpl(
-        this.templatePath('src-databaseDriver/backend/index.js'),
-        this.destinationPath('src/backend/index.js'),
-        tplProps
-      );
-      this.fs.copyTpl(
-        this.templatePath('src-databaseDriver/backend/Analyser.js'),
-        this.destinationPath('src/backend/Analyser.js'),
-        tplProps
-      );
+      if (this.props.pluginType == 'fileFormat') {
+        this.fs.copyTpl(
+          this.templatePath('src-fileFormat/frontend/index.js'),
+          this.destinationPath('src/frontend/index.js'),
+          tplProps
+        );
+
+        this.fs.copyTpl(
+          this.templatePath('src-fileFormat/backend/index.js'),
+          this.destinationPath('src/backend/index.js'),
+          tplProps
+        );
+        this.fs.copyTpl(
+          this.templatePath('src-fileFormat/backend/reader.js'),
+          this.destinationPath(`src/backend/reader.js`),
+          tplProps
+        );
+        this.fs.copyTpl(
+          this.templatePath('src-fileFormat/backend/writer.js'),
+          this.destinationPath(`src/backend/writer.js`),
+          tplProps
+        );
+      }
+
+      if (this.props.pluginType == 'databaseDriver') {
+        this.fs.copyTpl(
+          this.templatePath('src-databaseDriver/frontend/index.js'),
+          this.destinationPath('src/frontend/index.js'),
+          tplProps
+        );
+        this.fs.copyTpl(
+          this.templatePath('src-databaseDriver/frontend/Dumper.js'),
+          this.destinationPath('src/frontend/Dumper.js'),
+          tplProps
+        );
+        this.fs.copyTpl(
+          this.templatePath('src-databaseDriver/frontend/driver.js'),
+          this.destinationPath('src/frontend/driver.js'),
+          tplProps
+        );
+
+        this.fs.copyTpl(
+          this.templatePath('src-databaseDriver/backend/driver.js'),
+          this.destinationPath('src/backend/driver.js'),
+          tplProps
+        );
+        this.fs.copyTpl(
+          this.templatePath('src-databaseDriver/backend/index.js'),
+          this.destinationPath('src/backend/index.js'),
+          tplProps
+        );
+        this.fs.copyTpl(
+          this.templatePath('src-databaseDriver/backend/Analyser.js'),
+          this.destinationPath('src/backend/Analyser.js'),
+          tplProps
+        );
+      }
     }
   }
 
