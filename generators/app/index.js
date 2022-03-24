@@ -11,7 +11,7 @@ module.exports = class extends Generator {
       {
         type: 'input',
         name: 'packageName',
-        message: 'Your plugin name (recomended convention: prefixed by dbgate-plugin-)',
+        message: 'Your plugin name (must be prefixed with dbgate-plugin-)',
         default: 'dbgate-plugin-' + this.appname.toLowerCase(),
       },
       {

@@ -1,6 +1,6 @@
 {
   "name": "generator-dbgate",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "Generator for DbGate plugins",
   "homepage": "https://dbgate.org",
   "author": {
