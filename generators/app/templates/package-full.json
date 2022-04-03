@@ -3,6 +3,8 @@
     "main": "dist/backend.js",
     "version": "1.0.0",
     "license": "MIT",
+    "description": "Fill description and icon link ![icon](https://raw.githubusercontent.com/dbgate/dbgate/master/packages/web/public/unknown.svg)",
+    "author": "Fill author...",
     "keywords": [
       "dbgate",
       "dbgateplugin"
@@ -16,6 +18,7 @@
       "build": "<%= runCommand %> build:frontend && <%= runCommand %> build:backend",
       "plugin": "<%= runCommand %> build && <%= packageManager %> pack && dbgate-plugin <%= packageName %>",
       "plugout": "dbgate-plugout <%= packageName %>",
+      "copydist": "yarn build && yarn pack && dbgate-copydist ../dist/<%= packageName %>",
       "prepublishOnly": "<%= runCommand %> build"
     },
     "devDependencies": {

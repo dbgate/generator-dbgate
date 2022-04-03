@@ -57,6 +57,12 @@ module.exports = class extends Generator {
 
   writing() {
     const { packageName, packageManager } = this.props;
+
+    if (!packageName.startsWith('dbgate-plugin-')) {
+      console.log('Error: package name must start with prefix "dbgate-plugin-", terminating');
+      process.exit(1);
+    }
+
     const shortName = packageName.startsWith('dbgate-plugin-')
       ? packageName.substring('dbgate-plugin-'.length)
       : packageName;

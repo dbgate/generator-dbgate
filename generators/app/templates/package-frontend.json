@@ -2,6 +2,8 @@
     "name": "<%= packageName %>",
     "version": "1.0.0",
     "license": "MIT",
+    "description": "Fill description and icon link ![icon](https://raw.githubusercontent.com/dbgate/dbgate/master/packages/web/public/unknown.svg)",
+    "author": "Fill author...",
     "keywords": [
       "dbgate",
       "dbgateplugin"
@@ -13,10 +15,10 @@
       "build": "webpack --config webpack.config",
       "plugin": "<%= runCommand %> build && <%= packageManager %> pack && dbgate-plugin <%= packageName %>",
       "plugout": "dbgate-plugout <%= packageName %>",
+      "copydist": "yarn build && yarn pack && dbgate-copydist ../dist/<%= packageName %>",
       "prepublishOnly": "<%= runCommand %> build"
     },
     "devDependencies": {
-      "dbgate-tools": "^1.0.4",
       "dbgate-plugin-tools": "^1.0.4",
       "webpack": "^4.42.0",
       "webpack-cli": "^3.3.11"
