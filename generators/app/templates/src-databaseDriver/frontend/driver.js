@@ -13,7 +13,6 @@ const dialect = {
   },
 };
 
-
 /** @type {import('dbgate-types').EngineDriver} */
 const driver = {
   ...driverBase,
@@ -21,6 +20,9 @@ const driver = {
   dialect,
   engine: '<%= camelName %>@<%= packageName %>',
   title: 'My Database Engine',
+  showConnectionField: (field, values) => {
+    return ['server', 'port', 'user', 'password', 'defaultDatabase', 'singleDatabase', 'isReadOnly'].includes(field);
+  },
 };
 
 module.exports = driver;
