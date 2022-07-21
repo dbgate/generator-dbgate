@@ -7,28 +7,34 @@ const Analyser = require('./Analyser');
 const driver = {
   ...driverBase,
   analyserClass: Analyser,
+  // creating connection
   async connect({ server, port, user, password, database }) {
-    const pool = new NativePool({
-      server,
-      port,
-      user,
-      password,
-      database,
-    });
-    await pool.connect();
-    return pool;
+    // const connection = new NativeConnection({
+    //   server,
+    //   port,
+    //   user,
+    //   password,
+    //   database,
+    // });
+    // await connection.connect();
+    // return connection;
+    return {
+      connectionType: 'DUMMY',
+    };
   },
-  // @ts-ignore
-  async query(pool, sql) {
+  // called for retrieve data (eg. browse in data grid) and for update database
+  async query(connection, sql) {
     return {
       rows: [],
       columns: [],
     };
   },
-  async stream(pool, sql, options) {
+  // called in query console
+  async stream(connection, sql, options) {
     return null;
   },
-  async readQuery(pool, sql, structure) {
+  // called when exporting table or view
+  async readQuery(connection, sql, structure) {
     const pass = new stream.PassThrough({
       objectMode: true,
       highWaterMark: 100,
@@ -41,13 +47,16 @@ const driver = {
 
     return pass;
   },
-  async writeTable(pool, name, options) {
+  // called when importing into table or view
+  async writeTable(connection, name, options) {
     return createBulkInsertStreamBase(this, stream, pool, name, options);
   },
-  async getVersion(pool) {
+  // detect server version
+  async getVersion(connection) {
     return { version: '1.0.0' };
   },
-  async listDatabases(pool) {
+  // list databases on server
+  async listDatabases(connection) {
     return [{ name: 'db1' }, { name: 'db2' }];
   },
 };
